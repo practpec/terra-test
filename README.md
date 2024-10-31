@@ -1,16 +1,25 @@
-# Configuración de RabbitMQ con soporte para MQTT en Docker (EC2 Ubuntu)
+# Terratest 1.1
 
-Este documento describe los pasos necesarios para configurar RabbitMQ con soporte para MQTT en una instancia de EC2 que ejecuta Ubuntu utilizando Docker.
+## Tabla de Contenido
 
-## 1. Actualizar paquetes de Ubuntu
+1. Instalación
+2. Habilitación de MQTT en RabbitMQ
+3. Frontend
+4. Backend
+5. Raspberry
 
-Ejecuta el siguiente comando para actualizar la lista de paquetes:
+---
+
+## Habilitación de MQTT en RabbitMQ
+
+### 1. Actualizar paquetes de Ubuntu
 
 ```bash
 sudo apt update
-```
+sudo apt upgrade
+````
 
-## 2. Instalar Docker
+### 2. Instalar Docker
 
 Instala Docker en tu instancia de EC2 ejecutando:
 
@@ -18,7 +27,7 @@ Instala Docker en tu instancia de EC2 ejecutando:
 sudo apt install -y docker.io
 ```
 
-## 3. Iniciar y habilitar Docker para arranque automático
+### 3. Iniciar y habilitar Docker para arranque automático
 
 Inicia Docker y configura el servicio para que arranque automáticamente al reiniciar la instancia:
 
@@ -27,7 +36,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-## 4. Verificar la instalación de Docker
+### 4. Verificar la instalación de Docker
 
 Asegúrate de que Docker se ha instalado correctamente con el siguiente comando:
 
@@ -35,17 +44,7 @@ Asegúrate de que Docker se ha instalado correctamente con el siguiente comando:
 docker --version
 ```
 
-## 5. (Opcional) Ejecutar Docker sin sudo
-
-Si prefieres ejecutar Docker sin sudo, agrega tu usuario al grupo `docker` y reinicia la sesión:
-
-```bash
-sudo usermod -aG docker $USER
-```
-
-Cierra la sesión y vuelve a iniciarla para aplicar los cambios.
-
-## 6. Ejecutar RabbitMQ con soporte para MQTT en Docker
+### 5. Ejecutar RabbitMQ con soporte para MQTT en Docker
 
 Ejecuta el siguiente comando para lanzar RabbitMQ con soporte MQTT y asegurarlo para reinicio automático:
 
@@ -59,7 +58,7 @@ docker run -d --name rabbitmq --restart unless-stopped -p 5672:5672 -p 15672:156
 - **15672**: Puerto para la interfaz de administración web.
 - **1883**: Puerto para el protocolo MQTT.
 
-## 7. Habilitar el plugin de MQTT en RabbitMQ (si es necesario)
+### 6. Habilitar el plugin de MQTT en RabbitMQ (si es necesario)
 
 Si necesitas habilitar el plugin MQTT en RabbitMQ, utiliza el siguiente comando:
 
@@ -67,9 +66,9 @@ Si necesitas habilitar el plugin MQTT en RabbitMQ, utiliza el siguiente comando:
 docker exec -it rabbitmq rabbitmq-plugins enable rabbitmq_mqtt
 ```
 
-## Verificación del Estado de RabbitMQ y MQTT
+### Verificación del Estado de RabbitMQ y MQTT
 
-### A. Comprobar que el contenedor está en ejecución
+#### A. Comprobar que el contenedor está en ejecución
 
 Ejecuta el siguiente comando para confirmar que RabbitMQ está funcionando:
 
