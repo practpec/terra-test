@@ -58,15 +58,13 @@ docker run -d --name rabbitmq --restart unless-stopped -p 5672:5672 -p 15672:156
 - **15672**: Puerto para la interfaz de administración web.
 - **1883**: Puerto para el protocolo MQTT.
 
-### 6. Habilitar el plugin de MQTT en RabbitMQ (si es necesario)
-
-Si necesitas habilitar el plugin MQTT en RabbitMQ, utiliza el siguiente comando:
+### 6. Habilitar el plugin de MQTT en RabbitMQ
 
 ```bash
 docker exec -it rabbitmq rabbitmq-plugins enable rabbitmq_mqtt
 ```
 
-### Verificación del Estado de RabbitMQ y MQTT
+### 7. Verificación del Estado de RabbitMQ y MQTT
 
 #### A. Comprobar que el contenedor está en ejecución
 
