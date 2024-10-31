@@ -66,8 +66,6 @@ docker exec -it rabbitmq rabbitmq-plugins enable rabbitmq_mqtt
 
 ### 7. Verificación del Estado de RabbitMQ y MQTT
 
-#### A. Comprobar que el contenedor está en ejecución
-
 Ejecuta el siguiente comando para confirmar que RabbitMQ está funcionando:
 
 ```bash
